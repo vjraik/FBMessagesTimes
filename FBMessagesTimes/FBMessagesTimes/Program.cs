@@ -36,13 +36,14 @@ namespace FBMessagesTimes
             Console.ReadKey();
         }
 
-        private static void WriteByName(string messagesHTML, string start1, string fileEnd)
+        //Gets the timestamps of messages written by user whose name is in strt string and writes a new txt file containing line with format: day, Month Date, Year at Time AmOrPm
+        private static void WriteByName(string messagesHTML, string start, string fileEnd)
         {
 
             Console.WriteLine("Give the full path to the location you want the results to go. Will overwrite existing file.");
             string location = Console.ReadLine();
 
-            List<string> timeStamps = GetTimes(messagesHTML, start1);
+            List<string> timeStamps = GetTimes(messagesHTML, start);
 
             WriteFile(timeStamps, @location + fileEnd + ".txt");
         }
