@@ -27,9 +27,12 @@ namespace FBMessagesTimes
 
             string start2 = "<span class=user>" + user2 + "</span><span class=meta>";
 
-            WriteByName(messagesHTML, start1, user1 + "Messages");
+            Console.WriteLine("Give the full path to the location you want the results to go. Will overwrite existing file. Remember to add forward slash to the end if needed.");
+            string locationTo = Console.ReadLine();
 
-            WriteByName(messagesHTML, start2, user2 + "Messages");
+            WriteByName(locationTo, messagesHTML, start1, user1 + "Messages");
+
+            WriteByName(locationTo, messagesHTML, start2, user2 + "Messages");
 
             // Keep the console window open in debug mode.
             Console.WriteLine("Press any key to exit.");
@@ -37,15 +40,12 @@ namespace FBMessagesTimes
         }
 
         //Gets the timestamps of messages written by user whose name is in strt string and writes a new txt file containing line with format: day, Month Date, Year at Time AmOrPm
-        private static void WriteByName(string messagesHTML, string start, string fileEnd)
+        private static void WriteByName(string locationTo, string messagesHTML, string start, string fileEnd)
         {
-
-            Console.WriteLine("Give the full path to the location you want the results to go. Will overwrite existing file.");
-            string location = Console.ReadLine();
-
+            
             List<string> timeStamps = GetTimes(messagesHTML, start);
 
-            WriteFile(timeStamps, @location + fileEnd + ".txt");
+            WriteFile(timeStamps, @locationTo + fileEnd + ".txt");
         }
 
         private static List<string> GetTimes(string messagesHTML, string start)
